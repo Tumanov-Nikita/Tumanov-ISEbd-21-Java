@@ -4,7 +4,7 @@ public class Pan {
     private Water[] water;
     private Egg[] eggs;
     private Salt salt;
-    public boolean ReadyToGo; //{ get { return Check(); } }
+    public boolean ReadyToGo;
     public boolean getReadyToGo() {
     	return Check();
     }
