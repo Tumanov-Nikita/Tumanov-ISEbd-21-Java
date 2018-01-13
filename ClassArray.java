@@ -1,19 +1,22 @@
-public class ClassArray<T> {
-	private T[] places;
+import java.util.HashMap;
+
+
+
+public class ClassArray<T extends IAnimals> {
+	private HashMap<Integer,T> places;
+	private int maxCount;
 	private T defaultValue;
 	
 	public ClassArray(int size, T defaultValue) {
 		this.defaultValue = defaultValue;
-		places = (T[])(new Object[size]);
-		for(int i = 0;i<places.length;i++) {
-			places[i] = defaultValue;
-		}
+		places = new HashMap();
+		this.maxCount = size;
 	}
 	
-	public int addAnimal(T ship) {
-		for(int i = 0;i<places.length;i++) {
+	public int addAnimal(T animal) {
+		for(int i = 0;i<maxCount;i++) {
 			if(checkFreePlace(i)) {
-				places[i] = ship;
+				places.put(i, animal);
 				return i;
 			}
 		}
@@ -22,30 +25,21 @@ public class ClassArray<T> {
 	
 	public T getAnimal(int index) {
 		if(!checkFreePlace(index)) {
-			T ship = places[index];
-			places[index] = defaultValue;
-			return ship;
+			T animal = places.get(index);
+			places.remove(index);
+			return animal;
 		}
 		return defaultValue;
 	}
 	
 	public T popAnimal(int index) {
 		if(!checkFreePlace(index)) {
-			return places[index];
+			return places.get(index);
 		}
 		return defaultValue;
 	}
 	
 	private boolean checkFreePlace(int index) {
-		if(index < 0 || index > places.length) {
-			return false;
-		}
-		if(places[index] == null) {
-			return true;
-		}
-		if(places[index].equals(defaultValue)) {
-			return true;
-		}
-		return false;
+		return !places.containsKey(index);
 	}
 }
