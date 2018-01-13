@@ -1,22 +1,36 @@
 import java.awt.Graphics;
+
 import javax.swing.JPanel;
 
 
+
+
+
 	public class AnimalPanel extends JPanel {
-		private IAnimals ClassAnimal;
+		private IAnimals animal;
+		private Parking parking;
+		
+		
+		public AnimalPanel(){
+			super();
+			parking = new Parking();
+		}
 		
 		@Override
 		public void paint(Graphics g) {
 			super.paint(g);
-			if(ClassAnimal!=null) {
-				ClassAnimal.drawAnimal(g);
+			parking.drawMarking(g);
+			if(animal!=null) {
+				parking.putShipInParking(animal);
+				animal = null;
 			}
+			parking.drawAnimals(g);
 		}
 		
 		public void setAnimal(IAnimals animal) {
-			this.ClassAnimal = animal;
+			this.animal = animal;
 		}
-		public IAnimals getAnimal() {
-			return ClassAnimal;
+		public IAnimals getAnimal(int index) {
+			return parking.getAnimalInParking(index);
 		}
 	}
