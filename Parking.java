@@ -1,7 +1,9 @@
+package labs;
+
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-
 
 public class Parking {
 	ArrayList<ClassArray<IAnimals>> parking;
