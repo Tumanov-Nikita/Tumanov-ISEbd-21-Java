@@ -1,6 +1,6 @@
+package labs;
+
 import java.util.HashMap;
-
-
 
 public class ClassArray<T extends IAnimals> {
 	private HashMap<Integer,T> places;
