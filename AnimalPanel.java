@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 		
 		public AnimalPanel(){
 			super();
-			parking = new Parking();
+			parking = new Parking(5);
 		}
 		
 		@Override
@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 			super.paint(g);
 			parking.drawMarking(g);
 			if(animal!=null) {
-				parking.putShipInParking(animal);
+				parking.putAnimalInParking(animal);
 				animal = null;
 			}
 			parking.drawAnimals(g);
@@ -32,5 +32,12 @@ import javax.swing.JPanel;
 		}
 		public IAnimals getAnimal(int index) {
 			return parking.getAnimalInParking(index);
+		}
+		public void lvlUp() {
+			parking.lvlUp();
+		}
+		
+		public void lvlDown() {
+			parking.lvlDown();
 		}
 	}
