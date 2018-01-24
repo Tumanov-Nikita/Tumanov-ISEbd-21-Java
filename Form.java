@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JList;
 
 
 
@@ -23,7 +24,7 @@ public class Form {
 	private JTextField textFieldmaxSpeed;
 	private JTextField textFieldWeight;
 	private AnimalPanel panel;
-
+	private JList list;
 	/**
 	 * Launch the application.
 	 */
@@ -73,11 +74,11 @@ public class Form {
 		frame.getContentPane().add(lblWeight);
 		
 		JLabel lblColor = new JLabel("Color:");
-		lblColor.setBounds(656, 168, 46, 14);
+		lblColor.setBounds(645, 116, 46, 14);
 		frame.getContentPane().add(lblColor);
 		
 		JLabel lblDopcolor = new JLabel("dopColor:");
-		lblDopcolor.setBounds(645, 204, 84, 14);
+		lblDopcolor.setBounds(645, 141, 84, 14);
 		frame.getContentPane().add(lblDopcolor);
 		
 		textFieldmaxCountFood = new JTextField();
@@ -99,7 +100,7 @@ public class Form {
 		textFieldWeight.setColumns(10);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("\u0421\u043F\u0440\u044F\u0442\u0430\u0442\u044C\u0441\u044F");
-		chckbxNewCheckBox.setBounds(656, 103, 97, 23);
+		chckbxNewCheckBox.setBounds(641, 86, 97, 23);
 		frame.getContentPane().add(chckbxNewCheckBox);
 		
 		JButton ColorButton = new JButton("");
@@ -109,7 +110,7 @@ public class Form {
 				ColorButton.setBackground(tmp);
 			}
 		});
-		ColorButton.setBounds(740, 159, 86, 23);
+		ColorButton.setBounds(740, 116, 86, 23);
 		frame.getContentPane().add(ColorButton);
 		
 		JButton dopColorButton = new JButton("");
@@ -119,7 +120,7 @@ public class Form {
 				dopColorButton.setBackground(tmp);
 			}
 		});
-		dopColorButton.setBounds(739, 204, 86, 23);
+		dopColorButton.setBounds(740, 141, 86, 23);
 		frame.getContentPane().add(dopColorButton);
 		
 		JButton button = new JButton("\u041A\u0440\u043E\u043B\u0438\u043A");
@@ -133,7 +134,7 @@ public class Form {
 			}
 			
 		});
-		button.setBounds(737, 252, 89, 23);
+		button.setBounds(737, 166, 89, 23);
 		frame.getContentPane().add(button);
 		
 		JButton button_1 = new JButton("\u0417\u0430\u044F\u0446");
@@ -147,13 +148,13 @@ public class Form {
 				panel.repaint();
 			}
 		});
-		button_1.setBounds(645, 252, 89, 23);
+		button_1.setBounds(640, 166, 89, 23);
 		frame.getContentPane().add(button_1);
 		
 		
 		
 		ShowAnimal panel_1 = new ShowAnimal();
-		panel_1.setBounds(656, 301, 155, 236);
+		panel_1.setBounds(670, 200, 155, 236);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -168,6 +169,44 @@ public class Form {
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		formattedTextField.setBounds(39, 64, 84, 23);
 		panel_1.add(formattedTextField);
+		
+		String[] str = new String[5];
+		for(int i = 1;i<6;i++) {
+			str[i-1] = "Уровень " + i;
+		}
+		 list = new JList(str);
+		list.enable(false);
+		list.setSelectedIndex(0);
+		list.setBounds(670, 442, 155, 134);
+		frame.getContentPane().add(list);
+		
+		JButton btnNewButton = new JButton("<");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int select = list.getSelectedIndex();
+				if(select>0) {
+					list.setSelectedIndex(select - 1);
+					panel.lvlDown();
+					panel.repaint();
+				}
+			}
+		});
+		btnNewButton.setBounds(670, 584, 63, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton button_2 = new JButton(">");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int select = list.getSelectedIndex();
+				if(select<5) {
+					list.setSelectedIndex(select + 1);
+					panel.lvlUp();
+					panel.repaint();
+				}
+			}
+		});
+		button_2.setBounds(757, 584, 63, 23);
+		frame.getContentPane().add(button_2);
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panel_1.setAnimal(panel.getAnimal(Integer.parseInt(formattedTextField.getText())-1));

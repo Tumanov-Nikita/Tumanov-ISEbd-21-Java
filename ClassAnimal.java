@@ -1,6 +1,7 @@
+package labs;
+
 import java.awt.Color;
 import java.awt.Graphics;
-
 
 public abstract class ClassAnimal implements IAnimals{	
 
@@ -38,6 +39,11 @@ public abstract class ClassAnimal implements IAnimals{
 			countFood += count;
 		}		
 	} 
+	
+	@Override
+	public void setBodyColor(Color c) {
+		colorBody = c;
+	}
 	
 	public int getMaxCountFood() {
 		return maxCountFood;
